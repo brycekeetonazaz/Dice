@@ -1,4 +1,5 @@
 Die bob;
+int total = 0;
 void setup()
 {
 	size(1000,800);
@@ -7,17 +8,28 @@ void setup()
 void draw()
 {
 	//your code here
-	for(int thaX = 100; thaX <= 900; thaX += 200)
+	background((int)(Math.random()*255),(int)(Math.random()*255),(int)(Math.random()*255));
+	for(int thaX = 50; thaX <= 900; thaX += 400)
 	{
-		for(int thaY = 100; thaY <= 700; thaY += 200)
+		for(int thaY = 50; thaY <= 700; thaY += 400)
 		{
 			bob = new Die(thaX,thaY);
 			bob.show();
+			total += bob.myValue;
 		}
+	}
+	textSize(45);
+	textAlign(CENTER);
+	text("Total Value: "+total,width-500,height-200);
+	if((float)(total/11) == (int)(total/11))
+	{
+		//text("DUBS CHECKEM",width-500,height-100);
 	}
 }
 void mousePressed()
 {
+	total = 0;
+	bob.roll();
 	redraw();
 }
 class Die //models one single dice cube
@@ -29,18 +41,38 @@ class Die //models one single dice cube
 		//variable initializations here
 		myX = x;
 		myY = y;
+		myValue = (int)((Math.random())*6)+1;
 	}
 	void roll()
 	{
 		//your code here
-		myValue = (int)((Math.random())*6);
+		myValue = (int)((Math.random())*6)+1;
+		
 	}
 	void show()
 	{
 		//your code here
-		fill(255);
-		rect(myX,myY,100,100);
+		fill((int)(Math.random()*255),(int)(Math.random()*255),(int)(Math.random()*255));
+		rect(myX,myY,100,100,250);
 		fill(0);
-		text(myValue,myX+50,myY+50);
+		if(myValue == 1||myValue == 3||myValue == 5)
+		{
+			ellipse(myX+50,myY+50,25,25);
+		}
+		if(myValue > 1)
+		{
+			ellipse(myX+25,myY+25,25,25);
+			ellipse(myX+75,myY+75,25,25);
+		}
+		if(myValue >3)
+		{
+			ellipse(myX+75,myY+25,25,25);
+			ellipse(myX+25,myY+75,25,25);
+		}
+		if(myValue == 6)
+		{
+			ellipse(myX+25,myY+50,25,25);
+			ellipse(myX+75,myY+50,25,25);
+		}
 	}
 }
