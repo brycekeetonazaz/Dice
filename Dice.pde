@@ -2,16 +2,16 @@ Die bob;
 int total = 0;
 void setup()
 {
-	size(1000,800);
+	size(900,800);
 	noLoop();
 }
 void draw()
 {
 	//your code here
 	background((int)(Math.random()*255),(int)(Math.random()*255),(int)(Math.random()*255));
-	for(int thaX = 50; thaX <= 900; thaX += 400)
+	for(int thaX = (width/3)-183; thaX < 900; thaX += 266)
 	{
-		for(int thaY = 50; thaY <= 700; thaY += 400)
+		for(int thaY = (height/3)-250; thaY < 550; thaY += 200)
 		{
 			bob = new Die(thaX,thaY);
 			bob.show();
@@ -21,9 +21,9 @@ void draw()
 	textSize(45);
 	textAlign(CENTER);
 	text("Total Value: "+total,width-500,height-200);
-	if((float)(total/11) == (int)(total/11))
+	if((float)(total%11) == 0)
 	{
-		//text("DUBS CHECKEM",width-500,height-100);
+		text("DUBS CHECKEM",width-500,height-100);
 	}
 }
 void mousePressed()
@@ -54,7 +54,7 @@ class Die //models one single dice cube
 		//your code here
 		fill((int)(Math.random()*255),(int)(Math.random()*255),(int)(Math.random()*255));
 		rect(myX,myY,100,100,250);
-		fill(0);
+		fill((int)(Math.random()*255),(int)(Math.random()*255),(int)(Math.random()*255));
 		if(myValue == 1||myValue == 3||myValue == 5)
 		{
 			ellipse(myX+50,myY+50,25,25);
