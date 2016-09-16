@@ -8,7 +8,7 @@ void setup()
 void draw()
 {
 	//your code here
-	background((int)(Math.random()*255),(int)(Math.random()*255),(int)(Math.random()*255));
+	background((int)(Math.random()*100),(int)(Math.random()*100),(int)(Math.random()*100));
 	for(int thaX = (width/3)-183; thaX < 900; thaX += 266)
 	{
 		for(int thaY = (height/3)-250; thaY < 550; thaY += 200)
@@ -18,6 +18,7 @@ void draw()
 			total += bob.myValue;
 		}
 	}
+	fill((int)(Math.random()*155+100),(int)(Math.random()*155+100),(int)(Math.random()*155+100));
 	textSize(45);
 	textAlign(CENTER);
 	text("Total Value: "+total,width-500,height-200);
